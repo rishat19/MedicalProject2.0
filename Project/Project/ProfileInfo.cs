@@ -17,10 +17,12 @@ namespace Project
         Information info;
         Patient patient;
         Dictionary<string, bool> changes;
+        private MedicalDataBase medicalDB;
         public ProfileInfo(Patient patient)
         {
             InitializeComponent();
             this.patient = patient;
+            medicalDB = new MedicalDataBase();
         }
 
         private void ProfileInfo_Load(object sender, EventArgs e)
@@ -468,6 +470,7 @@ namespace Project
             switch (dr)
             {
                 case DialogResult.Yes:
+                    medicalDB.removeAnalys(patient.list[Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value)]);
                     patient.list.RemoveAt(Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value));
                     reload();
                     break;
